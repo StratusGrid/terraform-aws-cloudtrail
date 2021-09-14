@@ -20,10 +20,24 @@ resource "aws_s3_bucket" "cloudtrail" {
     prevent_destroy = true
   }
 
-  logging {
-    target_bucket = var.log_bucket
-    target_prefix = "s3/${local.associated_resource_name}/"
+  dynamic "logging" {
+    for_each = var.log_bucket != "" ? [""] : []
+
+    content {
+      target_bucket = var.log_bucket
+      target_prefix = "s3/${local.associated_resource_name}/"
+    }
   }
+
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        kms_master_key_id = aws_kms_key.mykey.arn
+        sse_algorithm     = "aws:kms"
+      }
+    }
+  }
+
   tags = merge(var.input_tags, {})
 }
 
