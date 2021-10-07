@@ -20,13 +20,9 @@ resource "aws_s3_bucket" "cloudtrail" {
     prevent_destroy = true
   }
 
-  dynamic "logging" {
-    for_each = var.log_bucket != "" ? [""] : []
-
-    content {
-      target_bucket = var.log_bucket
-      target_prefix = "s3/${local.associated_resource_name}/"
-    }
+  logging {
+    target_bucket = var.log_bucket
+    target_prefix = "s3/${local.associated_resource_name}/"
   }
 
   server_side_encryption_configuration {
@@ -39,6 +35,15 @@ resource "aws_s3_bucket" "cloudtrail" {
   }
 
   tags = merge(var.input_tags, {})
+}
+
+resource "aws_s3_bucket_public_access_block" "cloudtrail" {
+  bucket = aws_s3_bucket.cloudtrail.id
+
+  block_public_acls       = true
+  ignore_public_acls      = true
+  block_public_policy     = true
+  restrict_public_buckets = true
 }
 
 data "aws_iam_policy_document" "cloudtrail_s3" {

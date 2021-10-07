@@ -1,5 +1,6 @@
 resource "aws_sns_topic" "cloudtrail" {
-  name = local.associated_resource_name
+  name              = local.associated_resource_name
+  kms_master_key_id = aws_kms_key.cloudtrail.id
 }
 
 data "aws_iam_policy_document" "cloudtrail_sns" {
