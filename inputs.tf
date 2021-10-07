@@ -24,7 +24,6 @@ variable "expiration" {
 variable "log_bucket" {
   description = "The log bucket to log S3 logs to."
   type        = string
-  default     = ""
 }
 
 variable "transition_to_glacier" {
