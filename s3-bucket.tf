@@ -2,17 +2,24 @@ resource "aws_s3_bucket" "cloudtrail" {
   acl    = "log-delivery-write"
   bucket = local.associated_resource_name
 
-  lifecycle_rule {
-    id      = "log"
-    enabled = true
+  versioning {
+    mfa_delete = var.enable_mfa_delete_cloudtrail_bucket
+  }
 
-    transition {
-      days          = var.transition_to_glacier
-      storage_class = "GLACIER"
-    }
+  dynamic "lifecycle_rule" {
+    for_each = var.enable_cloudtrail_bucket_lifecycle_rules ? [1] : []
+    content {
+      id      = "log"
+      enabled = true
 
-    expiration {
-      days = var.expiration
+      transition {
+        days          = var.transition_to_glacier
+        storage_class = "GLACIER"
+      }
+
+      expiration {
+        days = var.expiration
+      }
     }
   }
 
