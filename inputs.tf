@@ -52,13 +52,12 @@ variable "enable_cloudtrail_bucket_lifecycle_rules" {
 }
 
 variable "event_selectors" {
-  default = []
+  default     = []
   description = "Selector for cloudtrail data event collection"
   type = list(object({
-    include_management_events = bool         
-    read_write_type = string
-    data_resource_type = string
-    data_resource_values = list(string)
+    include_management_events = bool
+    read_write_type           = string
+    data_resource_type        = string
+    data_resource_values      = list(string)
   }))
-
 }
