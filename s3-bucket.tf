@@ -1,7 +1,11 @@
 resource "aws_s3_bucket" "cloudtrail" {
   acl    = "log-delivery-write"
   bucket = local.associated_resource_name
-  
+
+  versioning {
+    mfa_delete = var.enable_mfa_delete_cloudtrail_bucket
+  }
+
   tags = merge(local.common_tags, {})
 }
 
