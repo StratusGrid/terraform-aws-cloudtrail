@@ -1,31 +1,39 @@
 resource "aws_s3_bucket" "cloudtrail" {
   acl    = "log-delivery-write"
   bucket = local.associated_resource_name
+  
+  tags = merge(local.common_tags, {})
+}
 
-  lifecycle_rule {
-    id      = "log"
-    enabled = true
+resource "aws_s3_bucket_acl" "cloudtrail" {
+  bucket = aws_s3_bucket.cloudtrail.id
+  acl    = "log-delivery-write"
+}
+
+resource "aws_s3_bucket_logging" "cloudtrail" {
+  bucket        = aws_s3_bucket.cloudtrail.id
+  target_bucket = var.log_bucket
+  target_prefix = "s3/${local.associated_resource_name}/"
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "cloudtrail" {
+  bucket = aws_s3_bucket.cloudtrail.bucket
+  rule {
+    id = "log"
+
+    expiration {
+      days = var.expiration
+    }
+
+    status = "Enabled"
 
     transition {
       days          = var.transition_to_glacier
       storage_class = "GLACIER"
     }
-
-    expiration {
-      days = var.expiration
-    }
   }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-
-  logging {
-    target_bucket = var.log_bucket
-    target_prefix = "s3/${local.associated_resource_name}/"
-  }
-  tags = merge(local.common_tags, {})
 }
+
 
 data "aws_iam_policy_document" "cloudtrail_s3" {
   statement {
@@ -97,4 +105,3 @@ resource "aws_s3_bucket_policy" "cloudtrail" {
   bucket = aws_s3_bucket.cloudtrail.id
   policy = data.aws_iam_policy_document.cloudtrail_s3.json
 }
-
