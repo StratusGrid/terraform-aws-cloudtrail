@@ -8,7 +8,7 @@ resource "aws_s3_bucket_versioning" "resource" {
   bucket = aws_s3_bucket.cloudtrail.id
 
   versioning_configuration {
-    status = "Disabled"
+    status     = "Disabled"
     mfa_delete = var.enable_mfa_delete_cloudtrail_bucket == true ? "Enabled" : "Disabled"
   }
 }
