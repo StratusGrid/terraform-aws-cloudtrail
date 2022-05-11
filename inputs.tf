@@ -45,12 +45,6 @@ variable "enable_mfa_delete_cloudtrail_bucket" {
   type        = bool
 }
 
-variable "enable_cloudtrail_bucket_lifecycle_rules" {
-  default     = true
-  description = "Enable/Disable lifecycle rules for cloudtrail s3 bucket. Must be false if planning to enable mfa delte"
-  type        = bool
-}
-
 variable "event_selectors" {
   default     = []
   description = "Selector for cloudtrail data event collection"

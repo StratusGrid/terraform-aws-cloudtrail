@@ -19,10 +19,12 @@ output "cloudtrail_cloudwatch_log_group_arn" {
 }
 
 output "cloudtrail_cmk_alias" {
+  description = "CloudTrail KMS Key Alias"
   value = aws_kms_alias.cloudtrail.name
 }
 
 output "cloudtrail_cmk_id" {
+  description = "CloudTrail KMS Key ID"
   value = aws_kms_key.cloudtrail.id
 }
 
