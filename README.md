@@ -38,7 +38,6 @@ This module sets up CloudTrail for an AWS account, including writing to CloudWat
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_enable_cloudtrail_bucket_lifecycle_rules"></a> [enable\_cloudtrail\_bucket\_lifecycle\_rules](#input\_enable\_cloudtrail\_bucket\_lifecycle\_rules) | Enable/Disable lifecycle rules for cloudtrail s3 bucket. Must be false if planning to enable mfa delte | `bool` | `true` | no |
 | <a name="input_enable_mfa_delete_cloudtrail_bucket"></a> [enable\_mfa\_delete\_cloudtrail\_bucket](#input\_enable\_mfa\_delete\_cloudtrail\_bucket) | Enable/Disable MFA Required for Object Deletion for Cloudtrail Bucket | `bool` | `false` | no |
 | <a name="input_event_selectors"></a> [event\_selectors](#input\_event\_selectors) | Selector for cloudtrail data event collection | <pre>list(object({<br>    include_management_events = bool<br>    read_write_type           = string<br>    data_resource_type        = string<br>    data_resource_values      = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_expiration"></a> [expiration](#input\_expiration) | The number of days to wait before expiring an object | `number` | `2557` | no |
@@ -55,8 +54,8 @@ This module sets up CloudTrail for an AWS account, including writing to CloudWat
 | <a name="output_cloudtrail_arn"></a> [cloudtrail\_arn](#output\_cloudtrail\_arn) | The Amazon Resource Name of the trail. |
 | <a name="output_cloudtrail_cloudwatch_log_group_arn"></a> [cloudtrail\_cloudwatch\_log\_group\_arn](#output\_cloudtrail\_cloudwatch\_log\_group\_arn) | value |
 | <a name="output_cloudtrail_cloudwatch_log_group_name"></a> [cloudtrail\_cloudwatch\_log\_group\_name](#output\_cloudtrail\_cloudwatch\_log\_group\_name) | value |
-| <a name="output_cloudtrail_cmk_alias"></a> [cloudtrail\_cmk\_alias](#output\_cloudtrail\_cmk\_alias) | n/a |
-| <a name="output_cloudtrail_cmk_id"></a> [cloudtrail\_cmk\_id](#output\_cloudtrail\_cmk\_id) | n/a |
+| <a name="output_cloudtrail_cmk_alias"></a> [cloudtrail\_cmk\_alias](#output\_cloudtrail\_cmk\_alias) | CloudTrail KMS Key Alias |
+| <a name="output_cloudtrail_cmk_id"></a> [cloudtrail\_cmk\_id](#output\_cloudtrail\_cmk\_id) | CloudTrail KMS Key ID |
 | <a name="output_cloudtrail_id"></a> [cloudtrail\_id](#output\_cloudtrail\_id) | The name of the trail. |
 | <a name="output_s3_bucket_arn"></a> [s3\_bucket\_arn](#output\_s3\_bucket\_arn) | The ARN of the bucket. Will be of format arn:aws:s3:::bucketname. |
 | <a name="output_s3_bucket_id"></a> [s3\_bucket\_id](#output\_s3\_bucket\_id) | The name of the bucket. |
