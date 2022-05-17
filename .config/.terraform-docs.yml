@@ -11,6 +11,12 @@ content: |-
 
   This module sets up CloudTrail for an AWS account, including writing to CloudWatch, an S3 bucket and an SNS topic.
 
+  # Examples
+
+  ```hcl
+  {{ include "examples/example1.tfnot" }}
+  ```
+
   ---
 
   {{ .Requirements }}

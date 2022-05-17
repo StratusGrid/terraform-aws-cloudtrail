@@ -5,6 +5,19 @@ GitHub: [StratusGrid/terraform-aws-cloudtrail](https://github.com/StratusGrid/te
 
 This module sets up CloudTrail for an AWS account, including writing to CloudWatch, an S3 bucket and an SNS topic.
 
+# Examples
+
+```hcl
+module "cloudtrail" {
+  source = "StratusGrid/cloudtrail/aws"
+  version = "3.0.0"
+  
+  name_prefix = var.name_prefix
+  log_bucket  = module.s3_bucket_logging.bucket_id
+  input_tags  = merge(local.common_tags, {})
+}
+```
+
 ---
 
 ## Requirements
