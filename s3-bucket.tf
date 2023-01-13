@@ -5,7 +5,6 @@ resource "aws_s3_bucket" "cloudtrail" {
   tags = merge(local.common_tags, {})
 }
 
-#tfsec:ignore:aws-s3-enable-versioning -- Ignore warning on versioning
 resource "aws_s3_bucket_versioning" "resource" {
   bucket = aws_s3_bucket.cloudtrail.id
 
