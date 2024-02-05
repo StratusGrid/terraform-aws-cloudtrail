@@ -1,6 +1,6 @@
 resource "aws_cloudtrail" "cloudtrail" {
-  cloud_watch_logs_group_arn    = "${aws_cloudwatch_log_group.cloudtrail.arn}:*"
-  cloud_watch_logs_role_arn     = aws_iam_role.cloudwatch_logs.arn
+  cloud_watch_logs_group_arn    = var.enable_cloudwatch_logs_for_cloudtrail ? "${aws_cloudwatch_log_group.cloudtrail[0].arn}:*" : null
+  cloud_watch_logs_role_arn     = var.enable_cloudwatch_logs_for_cloudtrail ? aws_iam_role.cloudwatch_logs[0].arn : null
   depends_on                    = [aws_s3_bucket_policy.cloudtrail]
   enable_log_file_validation    = true
   include_global_service_events = true
