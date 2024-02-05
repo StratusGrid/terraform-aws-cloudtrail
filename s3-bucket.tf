@@ -14,9 +14,17 @@ resource "aws_s3_bucket_versioning" "resource" {
   }
 }
 
-resource "aws_s3_bucket_acl" "cloudtrail" {
+resource "aws_s3_bucket_ownership_controls" "cloudtrail" {
   bucket = aws_s3_bucket.cloudtrail.id
-  acl    = "log-delivery-write"
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_acl" "cloudtrail" {
+  depends_on = [aws_s3_bucket_ownership_controls.cloudtrail]
+  bucket     = aws_s3_bucket.cloudtrail.id
+  acl        = "log-delivery-write"
 }
 
 resource "aws_s3_bucket_logging" "cloudtrail" {
