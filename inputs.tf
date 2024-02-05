@@ -9,16 +9,22 @@ variable "name_suffix" {
   default     = ""
 }
 
-variable "input_tags" {
-  description = "Map of tags to apply to resources"
-  type        = map(string)
-  default     = {}
+variable "enable_cloudwatch_logs_for_cloudtrail" {
+  default     = false
+  description = "Enable/Disable CloudWatch Logs for CloudTrail"
+  type        = bool
 }
 
 variable "expiration" {
   default     = 2557
   description = "The number of days to wait before expiring an object"
   type        = number
+}
+
+variable "input_tags" {
+  description = "Map of tags to apply to resources"
+  type        = map(string)
+  default     = {}
 }
 
 variable "log_bucket" {
