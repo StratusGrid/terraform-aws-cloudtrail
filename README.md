@@ -57,7 +57,7 @@ module "cloudtrail" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_enable_cloudwatch_logs_for_cloudtrail"></a> [enable\_cloudwatch\_logs\_for\_cloudtrail](#input\_enable\_cloudwatch\_logs\_for\_cloudtrail) | Enable/Disable CloudWatch Logs for CloudTrail | `bool` | `false` | no |
+| <a name="input_enable_cloudwatch_logs_for_cloudtrail"></a> [enable\_cloudwatch\_logs\_for\_cloudtrail](#input\_enable\_cloudwatch\_logs\_for\_cloudtrail) | Enable/Disable CloudWatch Logs for CloudTrail | `bool` | `true` | no |
 | <a name="input_enable_mfa_delete_cloudtrail_bucket"></a> [enable\_mfa\_delete\_cloudtrail\_bucket](#input\_enable\_mfa\_delete\_cloudtrail\_bucket) | Enable/Disable MFA Required for Object Deletion for Cloudtrail Bucket | `bool` | `false` | no |
 | <a name="input_event_selectors"></a> [event\_selectors](#input\_event\_selectors) | Selector for cloudtrail data event collection | <pre>list(object({<br>    include_management_events = bool<br>    read_write_type           = string<br>    data_resource_type        = string<br>    data_resource_values      = list(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_expiration"></a> [expiration](#input\_expiration) | The number of days to wait before expiring an object | `number` | `2557` | no |

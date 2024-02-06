@@ -10,7 +10,7 @@ variable "name_suffix" {
 }
 
 variable "enable_cloudwatch_logs_for_cloudtrail" {
-  default     = false
+  default     = true
   description = "Enable/Disable CloudWatch Logs for CloudTrail"
   type        = bool
 }
