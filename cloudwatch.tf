@@ -27,13 +27,14 @@ resource "aws_cloudwatch_log_group" "cloudtrail" {
 
 #tfsec:ignore:aws-iam-no-policy-wildcards
 data "aws_iam_policy_document" "cloudwatch_logs_role" {
+  count = var.enable_cloudwatch_logs_for_cloudtrail ? 1 : 0
   statement {
     actions = [
       "logs:CreateLogStream",
       "logs:PutLogEvents",
     ]
     resources = [
-      var.enable_cloudwatch_logs_for_cloudtrail ? "${aws_cloudwatch_log_group.cloudtrail[0].arn}:*" : ""
+      "${aws_cloudwatch_log_group.cloudtrail[0].arn}:*",
     ]
     sid = "AWSCloudTrailLogging"
   }
@@ -42,6 +43,6 @@ data "aws_iam_policy_document" "cloudwatch_logs_role" {
 resource "aws_iam_role_policy" "cloudwatch_logs" {
   count  = var.enable_cloudwatch_logs_for_cloudtrail ? 1 : 0
   name   = "cloudwatch-logs"
-  policy = data.aws_iam_policy_document.cloudwatch_logs_role.json
+  policy = data.aws_iam_policy_document.cloudwatch_logs_role[0].json
   role   = aws_iam_role.cloudwatch_logs[0].id
 }
