@@ -11,6 +11,8 @@ content: |-
 
   This module sets up CloudTrail for an AWS account, including writing to CloudWatch, an S3 bucket and an SNS topic.
 
+  Optionally, CloudTrail events can be sent to CloudWatch Logs.
+
   # Examples
 
   ```hcl

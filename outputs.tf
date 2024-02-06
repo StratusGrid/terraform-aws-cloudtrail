@@ -10,12 +10,12 @@ output "cloudtrail_id" {
 
 output "cloudtrail_cloudwatch_log_group_name" {
   description = "value"
-  value       = aws_cloudwatch_log_group.cloudtrail.name
+  value       = aws_cloudwatch_log_group.cloudtrail[0].name
 }
 
 output "cloudtrail_cloudwatch_log_group_arn" {
   description = "value"
-  value       = aws_cloudwatch_log_group.cloudtrail.arn
+  value       = aws_cloudwatch_log_group.cloudtrail[0].arn
 }
 
 output "cloudtrail_cmk_alias" {
