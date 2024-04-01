@@ -43,3 +43,4 @@ output "sns_arn" {
   value       = aws_sns_topic.cloudtrail.arn
 }
 
+# Added comment for testing purposes
