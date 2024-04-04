@@ -1,3 +1,5 @@
+header-from: ./.config/header.md
+
 version: ""
 
 formatter: markdown table
@@ -5,6 +7,8 @@ formatter: markdown table
 name: terraform-aws-cloudtrail
 
 content: |-
+ {{ .Header }}
+
   # terraform-aws-cloudtrail
 
   GitHub: [StratusGrid/terraform-aws-cloudtrail](https://github.com/StratusGrid/terraform-aws-cloudtrail)
@@ -39,6 +43,7 @@ content: |-
 
 sections:
   show:
+    - header
     - resources
     - inputs
     - outputs

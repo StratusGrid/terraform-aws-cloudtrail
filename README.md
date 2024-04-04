@@ -1,16 +1,26 @@
 <!-- BEGIN_TF_DOCS -->
-# terraform-aws-cloudtrail
+<p align="center">
+  <img src="https://github.com/StratusGrid/terraform-readme-template/blob/main/header/stratusgrid-logo-smaller.jpg?raw=true" />
+  <p align="center">    
+    <a href="https://stratusgrid.com/book-a-consultation">Contact Us</a> |
+    <a href="https://stratusgrid.com/cloud-cost-optimization-dashboard">Stratusphere FinOps</a> |
+    <a href="https://stratusgrid.com">StratusGrid Home</a> |
+    <a href="https://stratusgrid.com/blog">Blog</a>
+  </p>
+</p>
 
-GitHub: [StratusGrid/terraform-aws-cloudtrail](https://github.com/StratusGrid/terraform-aws-cloudtrail)
+ # terraform-aws-cloudtrail
 
-This module sets up CloudTrail for an AWS account, including writing to CloudWatch, an S3 bucket and an SNS topic.
+ GitHub: [StratusGrid/terraform-aws-cloudtrail](https://github.com/StratusGrid/terraform-aws-cloudtrail)
 
-Optionally, CloudTrail events can be sent to CloudWatch Logs.
+ This module sets up CloudTrail for an AWS account, including writing to CloudWatch, an S3 bucket and an SNS topic.
 
-# Examples
+ Optionally, CloudTrail events can be sent to CloudWatch Logs.
 
-```hcl
-module "cloudtrail" {
+ # Examples
+
+ ```hcl
+ module "cloudtrail" {
   source = "StratusGrid/cloudtrail/aws"
   # StratusGrid recommends pinning every module to a specific version
   version = "x.x.x"
@@ -20,18 +30,18 @@ module "cloudtrail" {
 
   input_tags  = merge(local.common_tags, {})
 }
-```
+ ```
 
----
+ ---
 
-## Requirements
+ ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.0 |
 
-## Resources
+ ## Resources
 
 | Name | Type |
 |------|------|
@@ -53,7 +63,7 @@ module "cloudtrail" {
 | [aws_sns_topic.cloudtrail](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic) | resource |
 | [aws_sns_topic_policy.cloudtrail](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/sns_topic_policy) | resource |
 
-## Inputs
+ ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -67,7 +77,7 @@ module "cloudtrail" {
 | <a name="input_name_suffix"></a> [name\_suffix](#input\_name\_suffix) | String to append to object names. This is optional, so start with dash if using | `string` | `""` | no |
 | <a name="input_transition_to_glacier"></a> [transition\_to\_glacier](#input\_transition\_to\_glacier) | The number of days to wait before transitioning an object to Glacier | `number` | `366` | no |
 
-## Outputs
+ ## Outputs
 
 | Name | Description |
 |------|-------------|
@@ -81,11 +91,11 @@ module "cloudtrail" {
 | <a name="output_s3_bucket_id"></a> [s3\_bucket\_id](#output\_s3\_bucket\_id) | The name of the bucket. |
 | <a name="output_sns_arn"></a> [sns\_arn](#output\_sns\_arn) | The ARN of the SNS topic, |
 
----
+ ---
 
-## Contributors
-- Wesley Kirkland [wesleykirklandsg](https://github.com/wesleykirklandsg)
-- Module originally forked from [Quinovas](https://github.com/QuiNovas)
+ ## Contributors
+ - Wesley Kirkland [wesleykirklandsg](https://github.com/wesleykirklandsg)
+ - Module originally forked from [Quinovas](https://github.com/QuiNovas)
 
-<span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
+ <span style="color:red">Note:</span> Manual changes to the README will be overwritten when the documentation is updated. To update the documentation, run `terraform-docs -c .config/.terraform-docs.yml .`
 <!-- END_TF_DOCS -->
